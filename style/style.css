@@ -6,14 +6,55 @@
     --color-lightgreen: #41f2c0;
 }
 
+CSS
+@font-face {
+  font-family: 'Pokemon Hollow';
+  src: url('Pokemon Hollow.ttf') format('truetype');
+}
+
 header {
-    background-color: var(--color-blue);
+    background-color: var(--color-darkgreen);
     margin: 0px;
+    margin-bottom: 3px;
+    height: 80px;
+    padding: 0px;
     display: flex;
     justify-content: center;
+    align-items: center;
+
+}
+
+div#txtheader {
+    padding: 0px;
+    margin-bottom: 4%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     color: var(--color-ice);
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-shadow: 3px 2px 2px var(--color-darkgreen);
+    font-family: Pokemon Hollow;
+    line-height: 30px;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1#who {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-ice);
+}
+
+h1#mbl {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-lightgreen);
 }
 
 body {
