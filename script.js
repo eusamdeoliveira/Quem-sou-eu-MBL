@@ -1,7 +1,6 @@
 (async () => { 
    /*  "http://127.0.0.1:3000/personalidade-escolhida", */
-      const pegando = await fazerRequisicao ("http://127.0.0.1:3000/personalidade-escolhida", "GET")
-      console.log(pegando)
+      const pegando = await fazerRequisicao ("http://127.0.0.1:3000/sortear-personalidade", "GET")
 })()
 
 async function fazerRequisicao (url, método, corpo) {
