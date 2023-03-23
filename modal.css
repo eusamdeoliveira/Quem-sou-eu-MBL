@@ -19,11 +19,23 @@
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+section.modal-content {
+  border-radius: 50%;
+}
+
 #modal-container .close {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
+}
+
+section#funfa {
+  padding: 0%;
+  border-radius: 50%;
+  background-color: aquamarine;
+  z-index: 2;
+
 }
 
 /* Modal Header */
@@ -53,7 +65,7 @@
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   animation-name: animatetop;
-  animation-duration: 0.4s
+  animation-duration: 0.5s
 }
 
 /* Add Animation */

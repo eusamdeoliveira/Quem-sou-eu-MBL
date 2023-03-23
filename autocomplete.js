@@ -5,36 +5,38 @@ const sugestBox = searchWrapper.querySelector(".list");
 let suggestions 
 
 inputBox.onkeyup = (e)=>{
-    let userData = e.target.value; //user enetered data
-    let emptyArray = [];
+    debounce(() => {
+        let userData = e.target.value; //user enetered data
+        let emptyArray = [];
 
-   
-    if(userData){
-        console.log(emptyArray)
-        fazerRequisicao("http://127.0.0.1:3000/personalidades-opcoes?string="+userData,"GET").then((dados) => {
-            emptyArray = dados.map((data)=>{
-                // passing return data inside li tag
-                return `<li style="cursor: pointer;" id=${data.id}>${data.nome}</li>`
-            });
-            searchWrapper.classList.add("active"); //show autocomplete box
-            showSuggestions(emptyArray);
-            let allList = sugestBox.querySelectorAll("li");
-            for (let i = 0; i < allList.length; i++) {
-                //adding onclick attribute in all li tag
-                allList[i].setAttribute("onclick", "select(this)");
-            }
-            if (e.key === 'Escape'){
-              searchWrapper.classList.remove("active");
-            }
-            })
-            .catch((erros) => {
-            console.log(erros)
-       })
-       
-    }else{
-        searchWrapper.classList.remove("active"); //hide autocomplete box
-    }
+        if(userData){
+            console.log(emptyArray)
+            fazerRequisicao("http://127.0.0.1:3000/personalidades-opcoes?string="+userData,"GET").then((dados) => {
+                emptyArray = dados.map((data)=>{
+                    // passing return data inside li tag
+                    return `<li id=${data.id}>${data.nome}</li>`
+                });
+                searchWrapper.classList.add("active"); //show autocomplete box
+                showSuggestions(emptyArray);
+                let allList = sugestBox.querySelectorAll("li");
+                for (let i = 0; i < allList.length; i++) {
+                    //adding onclick attribute in all li tag c
+                    allList[i].setAttribute("onclick", "select(this)");
+                }
+                if (e.key === 'Escape'){
+                searchWrapper.classList.remove("active");
+                }
+                })
+                .catch((erros) => {
+                console.log(erros)
+        })
+        
+        }else{
+            searchWrapper.classList.remove("active"); //hide autocomplete box
+        }
+    }, 500)
 }
+
 
 function select(element){
     let selectData = element.textContent;
@@ -60,14 +62,14 @@ function showSuggestions(list){
     sugestBox.innerHTML = listData;
 }
 
+
 function debounce(func, timeout = 300){
     let timer;
-    return (...args) => {
-      clearTimeout(timer);
-      timer = setTimeout(() => { func.apply(this, args); }, timeout);
-    };
+    clearTimeout(timer);
+    timer = setTimeout(() => { func(); }, timeout);
   } 
   function saveInput(){
     console.log('Salvando os dados');
   }
   const processChange = debounce(() => saveInput());
+
