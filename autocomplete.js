@@ -2,6 +2,7 @@ const searchWrapper = document.querySelector(".search-box");
 const inputBox = searchWrapper.querySelector(".search-txt");
 const sugestBox = searchWrapper.querySelector(".list");
 const outputSeg = document.querySelector("#seguidores");
+const outputIda = document.querySelector("#idade");
 let resp;
 
 let suggestions 
@@ -46,12 +47,18 @@ function select(element){
     fazerRequisicao(webLink, "GET")
     .then((resposta)=>{
         resp = resposta
-        if (resp.comparacao.seguidores == '>') {
+        if (!('comparacao' in resp)) {
+            outputSeg.innerHTML = `<p class="certo">${resp.personalidade.seguidores}</p>`
+            outputIda.innerHTML = `<p class="certo">${resp.personalidade.idade}</p>`
+        } else if (resp.comparacao.seguidores == '>') {
             outputSeg.innerHTML = `<p>${resp.personalidade.seguidores}⬆</p>`
+            outputIda.innerHTML = `<p>${resp.personalidade.idade}⬆</p>`
         } else if (resp.comparacao.seguidores == '<') {
             outputSeg.innerHTML = `<p>${resp.personalidade.seguidores}⬇</p>`
+            outputIda.innerHTML = `<p>${resp.personalidade.idade}⬇</p>`
         } else {
-            outputSeg.innerHTML = `<p>${resp.personalidade.seguidores}</p>`
+            outputSeg.innerHTML = `<p class="certo">${resp.personalidade.seguidores}</p>`
+            outputIda.innerHTML = `<p class="certo">${resp.personalidade.idade}</p>`
         }
     })
     .catch((err)=>{
