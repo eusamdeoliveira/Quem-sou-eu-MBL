@@ -29,7 +29,7 @@ server.get('/personalidades-opcoes', (req, res) => { //Autocomplete
 })
 
 server.get('/opcao-correta', (req, res) => {
-  if(req.query.id === 3) {
+  if(req.query.id == 3) {
     res.jsonp({
       personalidade: { 
         "nome": "Ricardo Almeida",

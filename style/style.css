@@ -1,6 +1,7 @@
 :root {
     --color-black: #090b0d;
     --color-ice: #dce8f2;
+    --color-transparentice: #dce8f29e;
     --color-blue: #8AC9CC;
     --color-darkgreen: #227364;
     --color-lightgreen: #41f2c0;
@@ -147,6 +148,33 @@ div#outimg img {
     width: 55px;
     border-radius: 50%;
     
+}
+
+div#seguidores {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 2px solid var(--color-black);
+    background-color: var(--color-transparentice);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#seguidores p {
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fonte-texto);
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-ice);
+    border-radius: 25px;  
+    padding: 0px;
+    margin: 0px;
+    font-size: 15pt;
 }
 
 div#outtxt {

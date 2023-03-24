@@ -1,6 +1,8 @@
 const searchWrapper = document.querySelector(".search-box");
 const inputBox = searchWrapper.querySelector(".search-txt");
 const sugestBox = searchWrapper.querySelector(".list");
+const outputSeg = document.querySelector("#seguidores");
+let resp;
 
 let suggestions 
 
@@ -10,7 +12,6 @@ inputBox.onkeyup = (e)=>{
         let emptyArray = [];
 
         if(userData){
-            console.log(emptyArray)
             fazerRequisicao("http://127.0.0.1:3000/personalidades-opcoes?string="+userData,"GET").then((dados) => {
                 emptyArray = dados.map((data)=>{
                     // passing return data inside li tag
@@ -41,12 +42,21 @@ inputBox.onkeyup = (e)=>{
 function select(element){
     let selectData = element.textContent;
     inputBox.value = selectData;
-    element.onclick = ()=>{
-        webLink = `https://www.google.com/search?q=${selectData}`;
-        const linkTag = document.querySelector("#linktag");
-        linkTag.setAttribute("href", webLink);
-        linkTag.click();
-    }
+    webLink = `http://127.0.0.1:3000/opcao-correta?id=${element.id}`;
+    fazerRequisicao(webLink, "GET")
+    .then((resposta)=>{
+        resp = resposta
+        if (resp.comparacao.seguidores == '>') {
+            outputSeg.innerHTML = `<p>${resp.personalidade.seguidores}⬆</p>`
+        } else if (resp.comparacao.seguidores == '<') {
+            outputSeg.innerHTML = `<p>${resp.personalidade.seguidores}⬇</p>`
+        } else {
+            outputSeg.innerHTML = `<p>${resp.personalidade.seguidores}</p>`
+        }
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
     searchWrapper.classList.remove("active");
 }
 
