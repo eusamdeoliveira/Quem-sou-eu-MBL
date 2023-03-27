@@ -46,9 +46,9 @@ server.get('/opcao-correta', (req, res) => {
         estado: personalidadeSorteada.estado === personalidade.estado,
         casa: personalidadeSorteada.casa === personalidade.casa,
         idade: personalidadeSorteada.idade === personalidade.idade ? '=' : 
-          personalidadeSorteada.idade === personalidade.idade ? '<' : '>',
+          personalidadeSorteada.idade < personalidade.idade ? '<' : '>',
         seguidores: personalidadeSorteada.seguidores === personalidade.seguidores ? '=' : 
-          personalidadeSorteada.seguidores === personalidade.seguidores ? '>' : '<',
+          personalidadeSorteada.seguidores > personalidade.seguidores ? '>' : '<',
       }
     })
   }
