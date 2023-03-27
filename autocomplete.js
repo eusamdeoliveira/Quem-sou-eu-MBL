@@ -50,15 +50,9 @@ function select(element){
         if (!('comparacao' in resp)) {
             outputSeg.innerHTML = `<p class="certo">${resp.personalidade.seguidores}</p>`
             outputIda.innerHTML = `<p class="certo">${resp.personalidade.idade}</p>`
-        } else if (resp.comparacao.seguidores == '>') {
-            outputSeg.innerHTML = `<p>${resp.personalidade.seguidores}⬆</p>`
-            outputIda.innerHTML = `<p>${resp.personalidade.idade}⬆</p>`
-        } else if (resp.comparacao.seguidores == '<') {
-            outputSeg.innerHTML = `<p>${resp.personalidade.seguidores}⬇</p>`
-            outputIda.innerHTML = `<p>${resp.personalidade.idade}⬇</p>`
         } else {
-            outputSeg.innerHTML = `<p class="certo">${resp.personalidade.seguidores}</p>`
-            outputIda.innerHTML = `<p class="certo">${resp.personalidade.idade}</p>`
+            compSeguidores(resposta);
+            compIdade(resposta);
         }
     })
     .catch((err)=>{
@@ -66,6 +60,26 @@ function select(element){
     })
     searchWrapper.classList.remove("active");
 }
+
+function compSeguidores (resposta) {
+    if (resposta.comparacao.seguidores == '>') {
+        outputSeg.innerHTML = `<p>${resposta.personalidade.seguidores}⬆</p>`
+    } else if (resposta.comparacao.seguidores == '<') {
+        outputSeg.innerHTML = `<p>${resposta.personalidade.seguidores}⬇</p>`
+    } else {
+        outputSeg.innerHTML = `<p class="certo">${resposta.personalidade.seguidores}</p>`
+    }
+}
+
+function compIdade (resposta) {
+    if (resposta.comparacao.idade == '>'){
+        outputIda.innerHTML = `<p>${resposta.personalidade.idade}⬆</p>`
+    } else if (resposta.comparacao.idade == '<') {
+        outputIda.innerHTML = `<p>${resposta.personalidade.idade}⬇</p>`
+    } else {
+        outputIda.innerHTML = `<p class="certo">${resposta.personalidade.idade}</p>`
+    }
+} 
 
 function showSuggestions(list){
     let listData;
