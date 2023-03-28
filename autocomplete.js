@@ -3,6 +3,7 @@ const inputBox = searchWrapper.querySelector(".search-txt");
 const sugestBox = searchWrapper.querySelector(".list");
 const outputSeg = document.querySelector("#seguidores");
 const outputIda = document.querySelector("#idade");
+const outputGen = document.querySelector("#genero");
 let resp;
 
 let suggestions 
@@ -50,15 +51,37 @@ function select(element){
         if (!('comparacao' in resp)) {
             outputSeg.innerHTML = `<p class="certo">${resp.personalidade.seguidores}</p>`
             outputIda.innerHTML = `<p class="certo">${resp.personalidade.idade}</p>`
+            if (resposta.personalidade.sexo == 0){
+                outputGen.innerHTML =`<img src="imagens/masculino.png" class="certo" alt="imagem masculino"></img>`
+            } else {
+                outputGen.innerHTML =`<img src="imagens/feminino.png" class="certo" alt="imagem feminino"></img>`
+            }
         } else {
             compSeguidores(resposta);
             compIdade(resposta);
+            compGenero(resposta);
         }
     })
     .catch((err)=>{
         console.log(err)
     })
     searchWrapper.classList.remove("active");
+}
+
+function compGenero (resposta) {
+    if (resposta.comparacao.sexo == true) {
+        if (resposta.personalidade.sexo == 0){
+            outputGen.innerHTML =`<img src="imagens/masculino.png" class="certo" alt="imagem masculino"></img>`
+        } else {
+            outputGen.innerHTML =`<img src="imagens/feminino.png" class="certo" alt="imagem feminino"></img>`
+        }
+    } else {
+     if (resposta.personalidade.sexo == 0){
+                outputGen.innerHTML =`<img src="imagens/masculino.png" alt="imagem masculino"></img>`
+            } else {
+                outputGen.innerHTML =`<img src="imagens/feminino.png" alt="imagem feminino"></img>`
+            }
+    }
 }
 
 function compSeguidores (resposta) {
@@ -102,5 +125,7 @@ function debounce(func, timeout = 300){
   function saveInput(){
     console.log('Salvando os dados');
   }
-  const processChange = debounce(() => saveInput());
+  function processChange() { 
+    debounce(() => saveInput());
+}
 

@@ -147,8 +147,29 @@ div#outimg {
 div#outimg img {
     width: 55px;
     border-radius: 50%;
-    
 }
+
+div#genero {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 2px solid var(--color-black);
+    background-color: var(--color-transparentice);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#genero img {
+    width: 55px;
+    border-radius: 50%;
+}
+
+div#genero img.certo {
+    background-color: var(--color-lightgreen);
+}
+
 
 div#seguidores {
     height: 55px;
