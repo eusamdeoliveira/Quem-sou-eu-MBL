@@ -162,14 +162,36 @@ div#genero {
 }
 
 div#genero img {
-    width: 55px;
-    border-radius: 50%;
+    width: 45px;
+    object-fit: contain;
 }
 
 div#genero img.certo {
     background-color: var(--color-lightgreen);
 }
 
+div#estado {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 2px solid var(--color-black);
+    background-color: var(--color-transparentice);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div#estado img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+div#estado img.certo{
+    border: 5.1px solid var(--color-lightgreen);
+}
 
 div#seguidores {
     height: 55px;

@@ -4,6 +4,7 @@ const sugestBox = searchWrapper.querySelector(".list");
 const outputSeg = document.querySelector("#seguidores");
 const outputIda = document.querySelector("#idade");
 const outputGen = document.querySelector("#genero");
+const outputEst = document.querySelector("#estado")
 let resp;
 
 let suggestions 
@@ -51,6 +52,7 @@ function select(element){
         if (!('comparacao' in resp)) {
             outputSeg.innerHTML = `<p class="certo">${resp.personalidade.seguidores}</p>`
             outputIda.innerHTML = `<p class="certo">${resp.personalidade.idade}</p>`
+            outputEst.innerHTML = `<img src="${resposta.personalidade.estado}" class="certo" alt="bandeira do estado"></img>`
             if (resposta.personalidade.sexo == 0){
                 outputGen.innerHTML =`<img src="imagens/masculino.png" class="certo" alt="imagem masculino"></img>`
             } else {
@@ -60,12 +62,17 @@ function select(element){
             compSeguidores(resposta);
             compIdade(resposta);
             compGenero(resposta);
+            compEstado(resposta);
         }
     })
     .catch((err)=>{
         console.log(err)
     })
     searchWrapper.classList.remove("active");
+}
+
+function compEstado (resposta) {
+    outputEst.innerHTML = `<img src="${resposta.personalidade.estado}" alt="bandeira do estado"></img>`
 }
 
 function compGenero (resposta) {
@@ -106,7 +113,6 @@ function compIdade (resposta) {
 
 function showSuggestions(list){
     let listData;
-    console.log(!list.length);
     if(!list.length){
         userValue = inputBox.value;
         listData = `<li>${userValue}</li>`;
