@@ -147,6 +147,7 @@ div#outimg {
 div#outimg img {
     width: 55px;
     border-radius: 50%;
+    object-fit: contain;
 }
 
 div#genero {
@@ -163,11 +164,13 @@ div#genero {
 
 div#genero img {
     width: 45px;
-    object-fit: contain;
+    height: 45px;
+    object-fit: fit;
 }
 
 div#genero img.certo {
     background-color: var(--color-lightgreen);
+    border: 5px solid var(--color-lightgreen);
 }
 
 div#estado {
