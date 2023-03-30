@@ -180,7 +180,7 @@ div#genero img, div#casa img {
     object-fit: fit;
 }
 
-div#genero img.certo {
+div#genero img.certo, div#casa img.certo {
     background-color: var(--color-lightgreen);
     border: 5px solid var(--color-lightgreen);
 }
