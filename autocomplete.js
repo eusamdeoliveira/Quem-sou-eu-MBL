@@ -4,8 +4,14 @@ const sugestBox = searchWrapper.querySelector(".list");
 const outputSeg = document.querySelector("#seguidores");
 const outputIda = document.querySelector("#idade");
 const outputGen = document.querySelector("#genero");
-const outputEst = document.querySelector("#estado")
+const outputEst = document.querySelector("#estado");
+const outputCas = document.querySelector("#casa");
 let resp;
+const casaMapper = {
+    1: "imagens/espartadisable.jpg",
+    2: "imagens/atenasdisable.jpg",
+    3: "imagens/alexandriadisable.jpg",
+}
 
 let suggestions 
 
@@ -57,7 +63,7 @@ function select(element){
                 outputGen.innerHTML =`<img src="imagens/masculino.png" class="certo" alt="imagem masculino"></img>`
             } else {
                 outputGen.innerHTML =`<img src="imagens/feminino.png" class="certo" alt="imagem feminino"></img>`
-            }
+            } outputCas.innerHTML = `<img src="${casaMapper[resposta.personalidade.casa]}" class="certo" alt="imagem casa"></img>`
         } else {
             compSeguidores(resposta);
             compIdade(resposta);

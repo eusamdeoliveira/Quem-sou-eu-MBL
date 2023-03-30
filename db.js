@@ -47,7 +47,7 @@ module.exports = [
     "idade": 34, 
     "estado": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Bandeira_do_estado_de_S%C3%A3o_Paulo.svg/300px-Bandeira_do_estado_de_S%C3%A3o_Paulo.svg.png",
     "seguidores": 80000,
-    "casa": 2
+    "casa": 1
   },
   { 
     "id": 6, 

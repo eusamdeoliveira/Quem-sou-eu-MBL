@@ -150,6 +150,18 @@ div#outimg img {
     object-fit: contain;
 }
 
+div#casa {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    border: 2px solid var(--color-black);
+    background-color: var(--color-transparentice);
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 div#genero {
     height: 55px;
     width: 55px;
@@ -162,7 +174,7 @@ div#genero {
     justify-content: center;
 }
 
-div#genero img {
+div#genero img, div#casa img {
     width: 45px;
     height: 45px;
     object-fit: fit;
