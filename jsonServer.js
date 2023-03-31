@@ -15,7 +15,7 @@ server.get('/sortear-personalidade', (req, res) => { //Sortear personalidade
       // sortear entre os menos frequentes
     // Criar Token jwt
       // Colocar o theChosenOne dentro do payload, junto com o IP e a data do sorteio
-  const theChosenOne = 3
+  const theChosenOne = 5
   res.send({theChosenOne})
 })
 
@@ -31,7 +31,7 @@ server.get('/personalidades-opcoes', (req, res) => { //Autocomplete
 server.get('/opcao-correta', (req, res) => {
   const id = Number(req.query.id)
   if(!id) return res.status(404).send('ID inválido')
-  const theChosenOne = 3 // Depois será pego pelo payload do token da própria requisição
+  const theChosenOne = 5 // Depois será pego pelo payload do token da própria requisição
   const personalidade = db.find(per => per.id === id)
 
   if(id === theChosenOne) {

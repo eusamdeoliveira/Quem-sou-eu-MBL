@@ -132,9 +132,35 @@ div.list li:hover {
 section.output {
     display: flex;
     justify-content: center;
-    margin: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 400px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
 }
 
+div.res {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+div.res p.chutePersona {
+    font-family: var(--fonte-texto);
+    font-weight: bold;
+    font-size: 14pt;
+    margin-top: 0px;
+    padding: 0px;
+
+}
 
 div#outimg {
     display: flex;
@@ -278,6 +304,7 @@ div#outtxt {
     justify-items: center;
     justify-content: space-around;
     width: 400px;
+    margin-bottom: 5px;
 }
 
 div#outtxt p {

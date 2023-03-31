@@ -1,11 +1,12 @@
 const searchWrapper = document.querySelector(".search-box");
 const inputBox = searchWrapper.querySelector(".search-txt");
 const sugestBox = searchWrapper.querySelector(".list");
-const outputSeg = document.querySelector("#seguidores");
-const outputIda = document.querySelector("#idade");
-const outputGen = document.querySelector("#genero");
-const outputEst = document.querySelector("#estado");
-const outputCas = document.querySelector("#casa");
+const output = document.querySelector(".output");
+let outputSeg;
+let outputIda;
+let outputGen;
+let outputEst;
+let outputCas;
 let resp;
 const casaMapper = {
     1: "imagens/espartadisable.jpg",
@@ -54,22 +55,23 @@ function select(element){
     webLink = `http://127.0.0.1:3000/opcao-correta?id=${element.id}`;
     fazerRequisicao(webLink, "GET")
     .then((resposta)=>{
-        resp = resposta
-        if (!('comparacao' in resp)) {
-            outputSeg.innerHTML = `<p class="certo">${resp.personalidade.seguidores}</p>`
-            outputIda.innerHTML = `<p class="certo">${resp.personalidade.idade}</p>`
-            outputEst.innerHTML = `<img src="${resposta.personalidade.estado}" class="certo" alt="bandeira do estado"></img>`
-            if (resposta.personalidade.sexo == 0){
-                outputGen.innerHTML =`<img src="imagens/masculino.png" class="certo" alt="imagem masculino"></img>`
-            } else {
-                outputGen.innerHTML =`<img src="imagens/feminino.png" class="certo" alt="imagem feminino"></img>`
-            } outputCas.innerHTML = `<img src="${casaMapper[resposta.personalidade.casa]}" class="certo" alt="imagem casa"></img>`
-        } else {
-            compSeguidores(resposta);
-            compIdade(resposta);
-            compGenero(resposta);
-            compEstado(resposta);
-        }
+        resp = resposta;
+        document.querySelector(".output").innerHTML += buildLinha(resposta.personalidade.nome,{
+            numero: resposta.personalidade.casa,
+            certo: resposta.comparacao ? resposta.comparacao.casa : true,
+        },{
+            numero: resposta.personalidade.sexo,
+            certo: !resposta.comparacao ? true : resposta.comparacao.sexo == true ? true : false,
+        },{
+            imagem: resposta.personalidade.estado,
+            certo: !resposta.comparacao ? true : resposta.comparacao.estado == true ? true : false,
+        },{
+            quantidade: resposta.personalidade.seguidores,
+            certo: !resposta.comparacao ? true : resposta.comparacao.seguidores == '=' ? true : resposta.comparacao.seguidores,
+        },{
+            anos: resposta.personalidade.idade,
+            certo: !resposta.comparacao ? true : resposta.comparacao.idade == '=' ? true : resposta.comparacao.idade,
+        });
     })
     .catch((err)=>{
         console.log(err)
@@ -77,45 +79,38 @@ function select(element){
     searchWrapper.classList.remove("active");
 }
 
-function compEstado (resposta) {
-    outputEst.innerHTML = `<img src="${resposta.personalidade.estado}" alt="bandeira do estado"></img>`
-}
+function buildLinha (nome, casa, genero, estado, seguidores, idade) {
+    return `
+    <div class="res">
+        <p class="chutePersona"> ${nome}</p>
+        <div id="outimg">
+            <div id="casa">
+            <img src="${casaMapper[casa.numero]}" ${casa.certo==true?'class="certo"':""} alt="imagem casa"></img>
+            </div>
+            <div id="genero">
+            <img src="imagens/${genero.numero==0?"masculino":"feminino"}.png" ${genero.certo==true?'class="certo"':""} alt="imagem feminino"></img>
+            </div>
+            <div id="estado">
+            <img src="${estado.imagem}" ${estado.certo==true?'class="certo"':""} alt="imagem estado"></img>
+            </div>
+            <div id="seguidores">
+            <p ${seguidores.certo==true?'class="certo"':""}>${seguidores.quantidade}${seguidores.certo == ">" ? "⬆" : seguidores.certo == "<" ? "⬇" : ""}</p>
+            </div>
+            <div id="idade">
+            <p ${idade.certo==true?'class="certo"':""}>${idade.anos}${idade.certo == ">" ? "⬆" : idade.certo == "<" ? "⬇" : ""}</p>
+            </div>
 
-function compGenero (resposta) {
-    if (resposta.comparacao.sexo == true) {
-        if (resposta.personalidade.sexo == 0){
-            outputGen.innerHTML =`<img src="imagens/masculino.png" class="certo" alt="imagem masculino"></img>`
-        } else {
-            outputGen.innerHTML =`<img src="imagens/feminino.png" class="certo" alt="imagem feminino"></img>`
-        }
-    } else {
-     if (resposta.personalidade.sexo == 0){
-                outputGen.innerHTML =`<img src="imagens/masculino.png" alt="imagem masculino"></img>`
-            } else {
-                outputGen.innerHTML =`<img src="imagens/feminino.png" alt="imagem feminino"></img>`
-            }
-    }
+        </div>
+        <div id="outtxt">
+            <p>casa</p>
+            <p>gênero</p>
+            <p>estado</p>
+            <p>seguidores</p>
+            <p>idade</p>
+        </div>
+    </div>
+`
 }
-
-function compSeguidores (resposta) {
-    if (resposta.comparacao.seguidores == '>') {
-        outputSeg.innerHTML = `<p>${resposta.personalidade.seguidores}⬆</p>`
-    } else if (resposta.comparacao.seguidores == '<') {
-        outputSeg.innerHTML = `<p>${resposta.personalidade.seguidores}⬇</p>`
-    } else {
-        outputSeg.innerHTML = `<p class="certo">${resposta.personalidade.seguidores}</p>`
-    }
-}
-
-function compIdade (resposta) {
-    if (resposta.comparacao.idade == '>'){
-        outputIda.innerHTML = `<p>${resposta.personalidade.idade}⬆</p>`
-    } else if (resposta.comparacao.idade == '<') {
-        outputIda.innerHTML = `<p>${resposta.personalidade.idade}⬇</p>`
-    } else {
-        outputIda.innerHTML = `<p class="certo">${resposta.personalidade.idade}</p>`
-    }
-} 
 
 function showSuggestions(list){
     let listData;
