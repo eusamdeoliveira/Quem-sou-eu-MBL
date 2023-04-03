@@ -6,16 +6,7 @@ const db = require('./db')
 server.use(middlewares)
 
 server.get('/sortear-personalidade', (req, res) => { //Sortear personalidade
-  // const theChosenOne = Math.floor(Math.random() * db.length)
-  //Estudar como a requisição vai tratar múltiplos sorteios de personalidade
-    // pegar o IP da pessoa
-      // Verificar pelo IP as personalidades sorteadas
-      // remover os 3 últimos sorteios (se houver)
-      // ordenar a frequência das personalidades sorteadas
-      // sortear entre os menos frequentes
-    // Criar Token jwt
-      // Colocar o theChosenOne dentro do payload, junto com o IP e a data do sorteio
-  const theChosenOne = 3
+  const theChosenOne = Math.floor(Math.random() * db.length)
   res.send({theChosenOne})
 })
 
