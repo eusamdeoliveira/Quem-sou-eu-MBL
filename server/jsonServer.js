@@ -21,8 +21,8 @@ server.get('/personalidades-opcoes', (req, res) => { //Autocomplete
 
 server.get('/opcao-correta', (req, res) => {
   const id = Number(req.query.id)
+  const theChosenOne = Number(req.query.tco)
   if(!id) return res.status(404).send('ID inválido')
-  const theChosenOne = 5 // Depois será pego pelo payload do token da própria requisição
   const personalidade = db.find(per => per.id === id)
 
   if(id === theChosenOne) {
