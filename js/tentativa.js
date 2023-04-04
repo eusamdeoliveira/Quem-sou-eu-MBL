@@ -1,10 +1,26 @@
-function buildLinha (nome, casa, genero, estado, seguidores, idade) {
+// A cada 1000 unidades, dividir por 1000 e adicionar uma letra.
+
+const unitMapper = {
+  0: "",
+  1: "K",
+  2: "M",
+  3: "B"
+};
+
+function coisa(numero, unidade) {
+  return numero < 1000
+    ? numero + unitMapper[unidade]
+    : coisa(Math.round(numero / 1000), unidade + 1);
+}
+
+function buildLinha (nome, casa, genero, estado, seguidores, idade, imagem) {
+  acerto(nome.certo, imagem)
   return `
   <div class="res">
-    <p class="chutePersona"> ${nome}</p>
+    <p id="chutePersona">${nome.chute}</p>
     <div id="outimg">
       <div id="casa">
-        <img src="${casaMapper[casa.numero]}" ${casa.certo==true?'class="certo"':""} alt="imagem casa"></img>
+        <img src="${casaMapper[casa.numero]}" ${casa.certo[0]==true?'class="certo"':""} alt="imagem casa"></img>
       </div>
       <div id="genero">
         <img src="imagens/${genero.numero==0?"masculino":"feminino"}.png" ${genero.certo==true?'class="certo"':""} alt="imagem feminino"></img>
@@ -13,7 +29,7 @@ function buildLinha (nome, casa, genero, estado, seguidores, idade) {
         <img src="${estado.imagem}" ${estado.certo==true?'class="certo"':""} alt="imagem estado"></img>
       </div>
       <div id="seguidores">
-        <p ${seguidores.certo==true?'class="certo"':""}>${seguidores.quantidade}${seguidores.certo == ">" ? "⬆" : seguidores.certo == "<" ? "⬇" : ""}</p>
+        <p ${seguidores.certo==true?'class="certo"':""}>${coisa(seguidores.quantidade, 0)}${seguidores.certo == ">" ? "⬆" : seguidores.certo == "<" ? "⬇" : ""}</p>
       </div>
       <div id="idade">
         <p ${idade.certo==true?'class="certo"':""}>${idade.anos}${idade.certo == ">" ? "⬆" : idade.certo == "<" ? "⬇" : ""}</p>
@@ -30,12 +46,22 @@ function buildLinha (nome, casa, genero, estado, seguidores, idade) {
 `
 }
 
+function acerto(chute, imagem) {
+  chute == true ?
+  [document.querySelector("#acerto").innerHTML = "<p>Parabéns, você acertou! 🎉</p>",
+  document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`] : 
+  document.querySelector(".imagem").innerHTML = `<img id="pessoa" src="imagens/avatar.webp" alt="chute"></img>`
+}
+
 function buildTentativa(resposta) {
   document.querySelector(".output").innerHTML += buildLinha(
-    resposta.personalidade.nome,
+    {
+      chute: resposta.personalidade.nome,
+      certo: !resposta.comparacao ? true : false,
+    },
     {
       numero: resposta.personalidade.casa,
-      certo: resposta.comparacao ? resposta.comparacao.casa : true,
+      certo: !resposta.comparacao ? true : resposta.comparacao.casa,
     },
     {
       numero: resposta.personalidade.sexo,
@@ -52,7 +78,8 @@ function buildTentativa(resposta) {
     {
       anos: resposta.personalidade.idade,
       certo: !resposta.comparacao ? true : resposta.comparacao.idade == '=' ? true : resposta.comparacao.idade,
-    }
+    },
+    resposta.personalidade.imagem
   );
     
 } 

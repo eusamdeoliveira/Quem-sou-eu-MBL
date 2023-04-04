@@ -5,7 +5,7 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "js": "node jsonServer.js"
+    "js": "node server/jsonServer.js"
   },
   "repository": {
     "type": "git",

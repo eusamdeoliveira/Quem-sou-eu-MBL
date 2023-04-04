@@ -153,7 +153,7 @@ div.res {
     flex-direction: column;
 }
 
-div.res p.chutePersona {
+div.res p #chutePersona {
     font-family: var(--fonte-texto);
     font-weight: bold;
     font-size: 14pt;
@@ -258,7 +258,7 @@ div#seguidores p {
     border-radius: 50%;  
     padding: 0px;
     margin: 0px;
-    font-size: 15pt;
+    font-size: 14pt;
 }
 
 #seguidores p.certo {
@@ -290,7 +290,7 @@ div#idade p {
     border-radius: 50%;  
     padding: 0px;
     margin: 0px;
-    font-size: 15pt;
+    font-size: 14pt;
 }
 
 #idade p.certo {
