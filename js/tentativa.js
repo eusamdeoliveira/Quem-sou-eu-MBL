@@ -46,13 +46,28 @@ function buildLinha (nome, casa, genero, estado, seguidores, idade, imagem) {
 `
 }
 
-function acerto(chute, imagem) {
-  chute == true ?
-  [document.querySelector("#acerto").innerHTML = "<p>Parabéns, você acertou! 🎉</p>",
-  document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`] : 
-  document.querySelector(".imagem").innerHTML = `<img id="pessoa" src="imagens/avatar.webp" alt="chute"></img>`
+function gameOver() {
+  if (tentativas.length >= 5 ) {
+    document.querySelector("#acerto").innerHTML = "<p>GAME OVER</p>"
+    setTimeout (() => {window.location.reload(true)},5000)
+  }
 }
 
+function acerto(chute, imagem) {
+  if (chute == true) {
+  tentativas.push(chute)
+  console.log(tentativas.length)
+  document.querySelector("#acerto").innerHTML = "<p>Parabéns, você acertou! 🎉</p>"
+  document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
+  } else {
+    tentativas.push(chute)
+    console.log(tentativas.length)
+  } gameOver()
+}
+
+
+
+let tentativas =  []
 function buildTentativa(resposta) {
   document.querySelector(".output").innerHTML += buildLinha(
     {
