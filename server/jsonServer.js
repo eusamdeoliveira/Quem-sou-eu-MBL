@@ -6,7 +6,7 @@ const db = require('./db')
 server.use(middlewares)
 
 server.get('/sortear-personalidade', (req, res) => { //Sortear personalidade
-  theChosenOne = Math.floor(Math.random() * db.length)
+  const theChosenOne = Math.floor(Math.random() * db.length)
   res.send({theChosenOne})
 })
 
@@ -21,15 +21,15 @@ server.get('/personalidades-opcoes', (req, res) => { //Autocomplete
 
 server.get('/opcao-correta', (req, res) => {
   const id = Number(req.query.id)
-  theChosenOne = Number(req.query.tco)
+  const tco = Number(req.query.tco)
   if(!id) return res.status(404).send('ID inválido')
   const personalidade = db.find(per => per.id === id)
 
-  if(id === theChosenOne) {
+  if(id === tco) {
     res.status(200).json({personalidade})
   } else {
     delete personalidade['imagem']
-    const personalidadeSorteada = db.find(p => p.id === theChosenOne)
+    const personalidadeSorteada = db.find(p => p.id === tco)
     res.status(200).json({
       personalidade,
       comparacao: {
