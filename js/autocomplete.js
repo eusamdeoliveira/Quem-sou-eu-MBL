@@ -35,7 +35,6 @@ inputBox.onkeyup = (e)=>{
 
 function select(element){
     inputBox.value = "";
-    const theChosenOne = 1 // implementar lógica!
     webLink = `http://127.0.0.1:3000/opcao-correta?id=${element.id}&tco=${theChosenOne}`;
     fazerRequisicao(webLink, "GET")
       .then(buildTentativa)
