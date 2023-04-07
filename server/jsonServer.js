@@ -6,7 +6,7 @@ const db = require('./db')
 server.use(middlewares)
 
 server.get('/sortear-personalidade', (req, res) => { //Sortear personalidade
-  const theChosenOne = Math.floor(Math.random() * db.length)
+  const theChosenOne = Math.ceil(Math.random() * db.length)
   res.send({theChosenOne})
 })
 
@@ -28,7 +28,6 @@ server.get('/opcao-correta', (req, res) => {
   if(id === tco) {
     res.status(200).json({personalidade})
   } else {
-    delete personalidade['imagem']
     const personalidadeSorteada = db.find(p => p.id === tco)
     res.status(200).json({
       personalidade,

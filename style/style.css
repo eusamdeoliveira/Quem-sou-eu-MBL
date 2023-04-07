@@ -76,6 +76,14 @@ img#pessoa {
     height: 400px;
 }
 
+span#acerto {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+    font-family: var(--fonte-texto);
+    font-size: 18pt;
+}
+
 div.procurar {
     display: flex;
     justify-content: center;
@@ -152,13 +160,36 @@ div.res {
     flex-direction: column;
 }
 
-div.res p #chutePersona {
+div.res p.chutePersona {
     font-family: var(--fonte-texto);
     font-weight: bold;
     font-size: 14pt;
     margin-top: 0px;
     padding: 0px;
 
+}
+
+button#reload {
+    padding: 8px;
+    margin: 0px;
+    border-radius: 10px;
+    border: 2px solid var(--color-black);
+    font-family: var(--fonte-texto);
+    font-size: 14pt;
+    background-color: var(--color-lightgreen);
+    color: var(--color-black);
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 2px 2px 2px var(--color-darkgreen);
+}
+
+button#reload:hover {
+    background-color: var(--color-blue);
+}
+
+button#reload:active {
+    box-shadow: none;
 }
 
 div#outimg {

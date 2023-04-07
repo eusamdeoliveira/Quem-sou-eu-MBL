@@ -17,10 +17,10 @@ function buildLinha (nome, casa, genero, estado, seguidores, idade, imagem) {
   acerto(nome.certo, imagem)
   return `
   <div class="res">
-    <p id="chutePersona">${nome.chute}</p>
+    <p class="chutePersona">${nome.chute}</p>
     <div id="outimg">
       <div id="casa">
-        <img src="${casaMapper[casa.numero]}" ${casa.certo[0]==true?'class="certo"':""} alt="imagem casa"></img>
+        <img src="${casaMapper[casa.numero]}" ${casa.certo==true?'class="certo"':""} alt="imagem casa"></img>
       </div>
       <div id="genero">
         <img src="imagens/${genero.numero==0?"masculino":"feminino"}.png" ${genero.certo==true?'class="certo"':""} alt="imagem feminino"></img>
@@ -46,23 +46,22 @@ function buildLinha (nome, casa, genero, estado, seguidores, idade, imagem) {
 `
 }
 
-function gameOver() {
-  if (tentativas.length >= 5 ) {
-    document.querySelector("#acerto").innerHTML = "<p>GAME OVER</p>"
-    setTimeout (() => {window.location.reload(true)},5000)
-  }
+function newGame (){
+  window.location.reload(true)
 }
 
 function acerto(chute, imagem) {
-  if (chute == true) {
   tentativas.push(chute)
   console.log(tentativas.length)
-  document.querySelector("#acerto").innerHTML = "<p>Parabéns, você acertou! 🎉</p>"
-  document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
-  } else {
-    tentativas.push(chute)
-    console.log(tentativas.length)
-  } gameOver()
+  if (chute == true) {
+    document.querySelector("#acerto").innerHTML = "<p>Parabéns, você acertou! 🎉</p>"
+    document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
+    searchWrapper.innerHTML = `<button id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
+  }else if (tentativas.length >= 2 ) {
+    document.querySelector("#acerto").innerHTML = "<p>FIM DE JOGO</p>"
+    document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
+    searchWrapper.innerHTML = `<button id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
+  }  
 }
 
 
@@ -95,6 +94,5 @@ function buildTentativa(resposta) {
       certo: !resposta.comparacao ? true : resposta.comparacao.idade == '=' ? true : resposta.comparacao.idade,
     },
     resposta.personalidade.imagem
-  );
-    
+  );    
 } 
