@@ -1,17 +1,17 @@
-const searchWrapper = document.querySelector(".search-box");
-const inputBox = searchWrapper.querySelector(".search-txt");
-const sugestBox = searchWrapper.querySelector(".list");
 const casaMapper = {
     1: "imagens/espartadisable.jpg",
     2: "imagens/atenasdisable.jpg",
     3: "imagens/alexandriadisable.jpg",
 }
 
-let suggestions 
+let suggestions
 
-inputBox.onkeyup = (e)=>{
+const inputBoxOnkeyup = (e)=>{
+  const searchWrapper = document.querySelector(".search-box");
+  const sugestBox = searchWrapper.querySelector(".list");
   debounce(() => {
     let userData = e.target.value;
+    console.log(e)
 
     if(userData) {
       fazerRequisicao("http://127.0.0.1:3000/personalidades-opcoes?string=" + userData, "GET")
@@ -34,16 +34,23 @@ inputBox.onkeyup = (e)=>{
 }
 
 
-function select(element){
-    inputBox.value = "";
-    webLink = `http://127.0.0.1:3000/opcao-correta?id=${element.id}&tco=${theChosenOne}`;
-    fazerRequisicao(webLink, "GET")
-      .then(buildTentativa)
-      .catch((err)=>{console.log(err)})
-    sugestBox.innerHTML = ""
+function select(element) {
+  const searchWrapper = document.querySelector(".search-box");
+  const sugestBox = searchWrapper.querySelector(".list");
+  const inputBox = searchWrapper.querySelector(".search-txt");
+
+  inputBox.value = "";
+  webLink = `http://127.0.0.1:3000/opcao-correta?id=${element.id}&tco=${theChosenOne}`;
+  fazerRequisicao(webLink, "GET")
+    .then(buildTentativa)
+    .catch((err)=>{console.log(err)})
+  sugestBox.innerHTML = ""
 }
 
-function showSuggestions(list){
+function showSuggestions(list) {
+  const searchWrapper = document.querySelector(".search-box");
+  const sugestBox = searchWrapper.querySelector(".list");
+  
   const listData = list.length ? list.join('') : `<li style="cursor: not-allowed;">Nenhuma Sugestão</li>`;
   sugestBox.innerHTML = listData;
 }
