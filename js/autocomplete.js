@@ -17,6 +17,7 @@ inputBox.onkeyup = (e)=>{
       fazerRequisicao("http://127.0.0.1:3000/personalidades-opcoes?string=" + userData, "GET")
         .then((dados) => {
           showSuggestions(dados.map((data) => `<li id=${data.id}>${data.nome}</li>`));
+          if(dados.length === 0) return
           let allList = sugestBox.querySelectorAll("li");
           for (let i = 0; i < allList.length; i++) {
             allList[i].setAttribute("onclick", "select(this)");
@@ -43,12 +44,6 @@ function select(element){
 }
 
 function showSuggestions(list){
-    let listData;
-    if(!list.length) {
-      userValue = inputBox.value;
-      listData = `<li>${userValue}</li>`;
-    } else {
-      listData = list.join('');
-    }
-    sugestBox.innerHTML = listData;
+  const listData = list.length ? list.join('') : `<li style="cursor: not-allowed;">Nenhuma Sugestão</li>`;
+  sugestBox.innerHTML = listData;
 }
