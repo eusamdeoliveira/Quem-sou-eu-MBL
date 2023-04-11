@@ -63,10 +63,17 @@ function acerto(chute, imagem) {
     document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
     searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
   } else if (tentativas >= maxTentativas ) {
-    document.querySelector("#acerto").innerHTML = "<p>FIM DE JOGO</p>"
-    document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
-    searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
-  }  
+    webLink = `http://127.0.0.1:3000/opcao-correta?id=${theChosenOne}&tco=${theChosenOne}`;
+    fazerRequisicao(webLink, "GET")
+      .then((resposta) => {
+        document.querySelector("#acerto").innerHTML = `<p>FIM DE JOGO</p>`
+        document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${resposta.personalidade.imagem} alt="chute"></img>`
+        document.querySelector(".imagem").appendChild()
+
+        searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
+        })
+      .catch((err)=>{console.log(err)})
+  }
 }
 
 

@@ -10,24 +10,42 @@
 </head>
 <body>
     <header>
-      <div id="txtheader"><h1 id="who">QuemÉesse</h1>
-        <br><br>
-        <h1 id="mbl">MBL?</h1>
-      </div>
-      <button id="openModalButton">❔</button>
-      <dialog>
-        Exemplo de modal!!
-      </dialog>
+        <div id="txtheader"><h1 id="who">QuemÉesse</h1>
+            <br><br>
+            <h1 id="mbl">MBL?</h1>
+        </div>
+
+        <div id="modal-container">
+            <button id="myBtn">❔</button>
+    
+            <!-- The Modal -->
+            <dialog id="myModal" class="modal">
+            <h2>Como Jogar</h2>
+            <p>
+              Você tem 5 chances de adivinhar o porta-voz do MBL que foi sorteado.
+              Após cada palpite, o feedback será revelado, mostrando o quão próximo o seu palpite está do misterioso porta-voz do MBL em várias categorias.
+              Exemplo de palpite: KIM KATAGUIRI
+            </p>
+            <img id="exemploModal" src="imagens/exemploModal.png" alt="exemplo de palpite">
+            <p>
+              … Significa que o porta-voz misterioso não é ateniense, é um homem e não é do estado de São Paulo, tem menos de 900 mil seguidores no Instagram e tem mais de 27 anos de idade.
+            </p>
+          </dialog>
+        </div>
     </header>
     <section id="entrada">
-      <div class="imagem">
-        <img id="pessoa" src="imagens/avatar.png" alt="chute"></img>
-      </div>
-      <span id="acerto"></span>
-      <div class="procurar">
-        <div class="search-box">
-          <input type="text" class="search-txt" placeholder="selecione um MBL" onblur="getHtmlList()[currentSuggestionFocusIndex].classList.remove('liact')" onkeyup="inputBoxOnkeyup(event)" autofocus>
-          <div class="list"></div>
+        
+        <div class="imagem">
+          <img id="pessoa" src="imagens/avatar.png" alt="chute"></img>
+        </div>
+        <span id="acerto"></span>
+        <div class="procurar">
+          <div class="search-box">
+            <div id="input-box">
+              <input type="text" class="search-txt" placeholder="selecione um MBL" onblur="getHtmlList()[currentSuggestionFocusIndex].classList.remove('liact')" onkeyup="inputBoxOnkeyup(event)" autofocus>
+            </div>
+            <div class="list"></div>
+          </div>
         </div>
       </div>
     </section>
