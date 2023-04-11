@@ -37,8 +37,6 @@ const inputBoxOnkeyup = (e)=>{
 
   debounce(() => {
     let userData = e.target.value;
-    console.log(e)
-
     if(userData) {
       fazerRequisicao("http://127.0.0.1:3000/personalidades-opcoes?string=" + userData, "GET")
         .then((dados) => {
