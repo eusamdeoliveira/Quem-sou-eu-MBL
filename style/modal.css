@@ -1,82 +1,41 @@
-#modal-container .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+:root {
+  --color-black: #090b0d;
+  --color-ice: #dce8f2;
+  --color-transparentice: #dce8f29e;
+  --color-blue: #8AC9CC;
+  --color-darkgreen: #227364;
+  --color-lightgreen: #41f2c0;
+  --fonte-texto: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --fonte-título: Pokemon Hollow;
 }
 
-#modal-container .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+dialog::backdrop {
+  background-color: var(--color-transparentice);
 }
 
-section.modal-content {
-  border-radius: 50%;
+dialog {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px var(--color-black);
+  max-width: 450px;
+  background-color: var(--color-ice);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-#modal-container .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+img#exemploModal {
+  max-width: 350px;
 }
 
-section#funfa {
-  padding: 0%;
-  border-radius: 50%;
-  background-color: aquamarine;
-  z-index: 2;
+dialog h2 {
+  font-family: var(--fonte-título);
+  color: var(--color-darkgreen);
+  font-size: 20pt;
 
 }
 
-/* Modal Header */
-#modal-container .modal-header {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-
-/* Modal Body */
-#modal-container .modal-body {padding: 2px 16px;}
-
-/* Modal Footer */
-#modal-container .modal-footer {
-  padding: 2px 16px;
-  background-color: #5cb85c;
-  color: white;
-}
-
-/* Modal Content */
-#modal-container .modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  animation-name: animatetop;
-  animation-duration: 0.5s
-}
-
-/* Add Animation */
-@keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
-}
-
-#modal-container .close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+dialog p {
+  font-family: var(--fonte-texto);
 }
