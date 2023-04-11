@@ -21,9 +21,9 @@ inputBox.onkeyup = (e)=>{
           for (let i = 0; i < allList.length; i++) {
             allList[i].setAttribute("onclick", "select(this)");
           }
-          // if (e.key === 'Escape') {
-          //   sugestBox.innerHTML = ""
-          // }
+           if (e.key === 'Escape') {
+             sugestBox.innerHTML = ""
+           }
         })
         .catch((erros) => {console.log(erros)})
     } else {
