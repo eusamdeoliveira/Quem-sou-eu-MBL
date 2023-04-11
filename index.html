@@ -26,7 +26,7 @@
       <span id="acerto"></span>
       <div class="procurar">
         <div class="search-box">
-          <input type="text" class="search-txt" placeholder="selecione um MBL" onkeyup="inputBoxOnkeyup(event)" autofocus>
+          <input type="text" class="search-txt" placeholder="selecione um MBL" onblur="getHtmlList()[currentSuggestionFocusIndex].classList.remove('liact')" onkeyup="inputBoxOnkeyup(event)" autofocus>
           <div class="list"></div>
         </div>
       </div>

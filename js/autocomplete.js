@@ -22,7 +22,7 @@ function handleArrow(isUp) {
   htmlList[currentSuggestionFocusIndex].classList.add("liact")
 }
 
-const inputBoxOnkeyup = (e)=>{
+const inputBoxOnkeyup = (e) => {
   const searchWrapper = document.querySelector(".search-box");
   const sugestBox = searchWrapper.querySelector(".list");
   e.preventDefault()
@@ -44,15 +44,12 @@ const inputBoxOnkeyup = (e)=>{
           if(dados.length === 0) return
           let allList = sugestBox.querySelectorAll("li");
           for (let i = 0; i < allList.length; i++) {
-            allList[i].setAttribute("onclick", "select(this)");
+            allList[i].setAttribute("onclick",      "select(this)");
             allList[i].setAttribute("onmouseenter", `getHtmlList()[currentSuggestionFocusIndex].classList.remove('liact'); this.classList.add('liact'); currentSuggestionFocusIndex = ${i};`);
             allList[i].setAttribute("onmouseleave", `this.classList.remove('liact'); currentSuggestionFocusIndex = ${i};`);
           }
           sugestBox.setAttribute('onmouseleave', `getHtmlList()[currentSuggestionFocusIndex].classList.add('liact')`)
           getHtmlList()[currentSuggestionFocusIndex].classList.add("liact")
-          // if (e.key === 'Escape') {
-          //   sugestBox.innerHTML = ""
-          // }
         })
         .catch((erros) => {console.log(erros)})
     } else {
