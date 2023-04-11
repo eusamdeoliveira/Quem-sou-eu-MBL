@@ -131,10 +131,9 @@ div.list li {
     font-family:var(--fonte-texto);
 }
 
-div.list li:hover {
-    background-color: var(--color-darkgreen);
+.liact {
+    background-color: var(--color-darkgreen) !important;
 }
-
 
 section.output {
     display: flex;

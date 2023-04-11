@@ -56,17 +56,16 @@ function acerto(chute, imagem) {
   const searchWrapper = document.querySelector(".search-box");
 
   tentativas++
-  console.log(tentativas)
-  document.querySelector('.search-box').innerHTML = `<input type="text" class="search-txt" placeholder="selecione um MBL -> ${tentativas}/${maxTentativas}" onkeyup="inputBoxOnkeyup(event)">
-  <div class="list"></div>`
+  searchWrapper.querySelector(".search-txt").placeholder = `selecione um MBL -> ${tentativas}/${maxTentativas}`
+
   if (chute == true) {
     document.querySelector("#acerto").innerHTML = "<p>Parabéns, você acertou! 🎉</p>"
     document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
-    searchWrapper.innerHTML = `<button id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
-  }else if (tentativas >= maxTentativas ) {
+    searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
+  } else if (tentativas >= maxTentativas ) {
     document.querySelector("#acerto").innerHTML = "<p>FIM DE JOGO</p>"
     document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
-    searchWrapper.innerHTML = `<button id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
+    searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
   }  
 }
 

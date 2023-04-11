@@ -4,11 +4,37 @@ const casaMapper = {
     3: "imagens/alexandriadisable.jpg",
 }
 
-let suggestions
+let currentSuggestionFocusIndex = 0
+
+const getHtmlList = () => document.querySelector(".search-box").querySelector(".list").querySelectorAll("li")
+
+function handleArrow(isUp) {
+  const htmlList = getHtmlList()
+  if(htmlList.length === 0) return
+  
+  if(currentSuggestionFocusIndex < htmlList.length) htmlList[currentSuggestionFocusIndex].classList.remove("liact")
+  if(isUp && currentSuggestionFocusIndex > 0) {
+    currentSuggestionFocusIndex--
+  } else if(!isUp && currentSuggestionFocusIndex < htmlList.length - 1) {
+    currentSuggestionFocusIndex++
+  }
+
+  htmlList[currentSuggestionFocusIndex].classList.add("liact")
+}
 
 const inputBoxOnkeyup = (e)=>{
   const searchWrapper = document.querySelector(".search-box");
   const sugestBox = searchWrapper.querySelector(".list");
+  e.preventDefault()
+
+  if(e.key === "ArrowDown" || e.key === "ArrowUp") {
+    return handleArrow(e.key === "ArrowUp")
+  }
+
+  if(e.key === "Enter") {
+    return sugestBox.querySelectorAll("li")[currentSuggestionFocusIndex].click()
+  }
+
   debounce(() => {
     let userData = e.target.value;
     console.log(e)
@@ -21,7 +47,11 @@ const inputBoxOnkeyup = (e)=>{
           let allList = sugestBox.querySelectorAll("li");
           for (let i = 0; i < allList.length; i++) {
             allList[i].setAttribute("onclick", "select(this)");
+            allList[i].setAttribute("onmouseenter", `getHtmlList()[currentSuggestionFocusIndex].classList.remove('liact'); this.classList.add('liact'); currentSuggestionFocusIndex = ${i};`);
+            allList[i].setAttribute("onmouseleave", `this.classList.remove('liact'); currentSuggestionFocusIndex = ${i};`);
           }
+          sugestBox.setAttribute('onmouseleave', `getHtmlList()[currentSuggestionFocusIndex].classList.add('liact')`)
+          getHtmlList()[currentSuggestionFocusIndex].classList.add("liact")
           // if (e.key === 'Escape') {
           //   sugestBox.innerHTML = ""
           // }
@@ -50,7 +80,7 @@ function select(element) {
 function showSuggestions(list) {
   const searchWrapper = document.querySelector(".search-box");
   const sugestBox = searchWrapper.querySelector(".list");
-  
+
   const listData = list.length ? list.join('') : `<li style="cursor: not-allowed;">Nenhuma Sugestão</li>`;
   sugestBox.innerHTML = listData;
 }
