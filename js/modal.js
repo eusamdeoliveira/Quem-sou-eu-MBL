@@ -1,12 +1,11 @@
-const modal = document.querySelector('dialog')
-const openModalButton = document.querySelector('#openModalButton')
+const button = document.querySelector("#myBtn");
+const modal = document.querySelector("dialog");
+const buttonClose = document.querySelector("#fecharModal")
 
-openModalButton.onclick = () => {
+function abrirModal () {
   modal.showModal()
 }
 
-window.addEventListener('click', (e) => {
-  if(modal.contains(e.target)) {
-    modal.close()
-  }
-})
+function fecharModal () {
+  modal.close()
+}

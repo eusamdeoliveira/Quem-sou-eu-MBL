@@ -66,7 +66,7 @@ function acerto(chute, imagem) {
     webLink = `http://127.0.0.1:3000/opcao-correta?id=${theChosenOne}&tco=${theChosenOne}`;
     fazerRequisicao(webLink, "GET")
       .then((resposta) => {
-        document.querySelector("#acerto").innerHTML = `<p>FIM DE JOGO</p>`
+        document.querySelector("#acerto").innerHTML = `<div><p>${resposta.personalidade.nome}</p><p>FIM DE JOGO</p></div>`
         document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${resposta.personalidade.imagem} alt="chute"></img>`
         document.querySelector(".imagem").appendChild()
 
