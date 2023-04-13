@@ -15,8 +15,22 @@
 }
 
 
-#modal-close-btn {
-  font-family:var(--fonte-texto);
+#fecharModal {
+  background-color: var(--color-transparentice);
+  border: none;
+  padding: 0px;
+  margin: 0px 0px 0px auto
+}
+
+#fecharModal h2 {
+  padding: 0px;
+  margin: 0;
+}
+
+#fecharModal h2:hover {
+  padding: 0px;
+  margin: 0;
+  color: var(--color-lightgreen);
 }
 
 dialog::backdrop {

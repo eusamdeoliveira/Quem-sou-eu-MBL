@@ -7,6 +7,10 @@ button.onclick = (e) => {
   abrirModal()
 }
 
+buttonClose.onclick = (e) => {
+  fecharModal()
+}
+
 function abrirModal () {
   modal.showModal()
 }
