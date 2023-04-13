@@ -22,7 +22,7 @@ window.onload = function () {
       percentageScrolled = Math.floor((scrollPosition / pageSize) * 100); 
   
        if (percentageScrolled >= 50){ // if the percentage is >= 50, scroll to top
-         window.scrollTo(70,0); 
+         window.scrollTo(0,70); 
        } 
      }; 
   };

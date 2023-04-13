@@ -68,7 +68,6 @@ function acerto(chute, imagem) {
       .then((resposta) => {
         document.querySelector("#acerto").innerHTML = `<div><p>${resposta.personalidade.nome}</p><p>FIM DE JOGO</p></div>`
         document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${resposta.personalidade.imagem} alt="chute"></img>`
-        document.querySelector(".imagem").appendChild()
 
         searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
         })
