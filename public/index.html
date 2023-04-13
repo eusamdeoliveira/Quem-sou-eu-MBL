@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quem é esse MBL?</title>
+    <link rel="stylesheet" href="style/modal.css">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+        <div id="txtheader"><h1 id="who">QuemÉesse</h1>
+            <br><br>
+            <h1 id="mbl">MBL?</h1>
+        </div>
+
+        <button id="myBtn">❔</button>
+    </header>
+    <!-- The Modal -->
+    <dialog id="myModal" class="modal">
+      <div style="height: 30px; max-width: 450px; display: flex; justify-content: end; align-items: center;">
+        <button id="fecharModal"><h2>X</h2></button>
+      </div>
+      <div id="modal-container">
+        <h2>Como Jogar</h2>
+        <p>
+          Você tem 5 chances de adivinhar o porta-voz do MBL que foi sorteado.
+          Após cada palpite, o feedback será revelado, mostrando o quão próximo o seu palpite está do misterioso porta-voz do MBL em várias categorias.
+          Exemplo de palpite: KIM KATAGUIRI
+        </p>
+        <img id="exemploModal" src="imagens/exemploModal.png" alt="exemplo de palpite">
+        <p>
+          … Significa que o porta-voz misterioso não é ateniense, é um homem e não é do estado de São Paulo, tem menos de 900 mil seguidores no Instagram e tem mais de 27 anos de idade.
+        </p>
+
+      </div>
+    </dialog>
+    <section id="entrada">
+        
+        <div class="imagem">
+          <img id="pessoa" src="imagens/avatar.png" alt="chute"></img>
+        </div>
+        <span id="acerto"></span>
+        <div class="procurar">
+          <div class="search-box">
+            <div id="input-box">
+              <input type="text" class="search-txt" placeholder="selecione um MBL" onkeyup="inputBoxOnkeyup(event)" autofocus>
+            </div>
+            <div class="list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="output">
+    </section>
+    <footer>
+      <p>&copy; JSam Soluções</p>
+    </footer>
+
+ <script src="js/tentativa.js"></script>
+ <script src="js/debounce.js"></script>
+ <script src="js/modal.js"></script>
+ <script src="js/script.js"></script>
+ <script src="js/autocomplete.js"></script>
+</body>
+</html>

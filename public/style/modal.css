@@ -1,0 +1,70 @@
+:root {
+  --color-black: #090b0d;
+  --color-ice: #dce8f2;
+  --color-transparentice: #dce8f29e;
+  --color-blue: #8AC9CC;
+  --color-darkgreen: #227364;
+  --color-lightgreen: #41f2c0;
+  --fonte-texto: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --fonte-título: Pokemon Hollow;
+}
+
+@font-face {
+  font-family: 'Pokemon Hollow';
+  src: url('Pokemon Hollow.ttf') format('truetype');
+}
+
+
+#fecharModal {
+  background-color: var(--color-transparentice);
+  border: none;
+  padding: 0px;
+  margin: 0px 0px 0px auto
+}
+
+#fecharModal h2 {
+  padding: 0px;
+  margin: 0;
+}
+
+#fecharModal h2:hover {
+  padding: 0px;
+  margin: 0;
+  color: var(--color-lightgreen);
+}
+
+dialog::backdrop {
+  background-color: var(--color-transparentice);
+}
+
+dialog {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 10px var(--color-black);
+  max-width: 450px;
+  background-color: var(--color-ice);
+}
+
+#modal-container {
+  border: none;
+  max-width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+img#exemploModal {
+  max-width: 350px;
+}
+
+dialog h2 {
+  font-family: var(--fonte-título);
+  color: var(--color-darkgreen);
+  font-size: 20pt;
+
+}
+
+dialog p {
+  font-family: var(--fonte-texto);
+}

@@ -1,0 +1,28 @@
+{
+  "name": "quem-sou-eu-mbl",
+  "version": "1.0.0",
+  "description": "Jogo para conhecer melhor as personalidades do MBL",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "js": "node server/jsonServer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eusamdeoliveira/Quem-sou-eu-MBL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eusamdeoliveira/Quem-sou-eu-MBL/issues"
+  },
+  "homepage": "https://github.com/eusamdeoliveira/Quem-sou-eu-MBL#readme",
+  "devDependencies": {
+    "json-server": "^0.17.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
