@@ -20,5 +20,9 @@
   "homepage": "https://github.com/eusamdeoliveira/Quem-sou-eu-MBL#readme",
   "devDependencies": {
     "json-server": "^0.17.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   }
 }
