@@ -80,9 +80,16 @@ img#pessoa {
 span#acerto {
     display: flex;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     margin-bottom: 0px;
+    padding-bottom: 0px;
     font-family: var(--fonte-texto);
     font-size: 18pt;
+}
+
+span#acerto div {
+    margin: 0px;
 }
 
 div.procurar {
