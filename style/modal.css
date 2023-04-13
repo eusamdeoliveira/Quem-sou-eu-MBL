@@ -9,6 +9,30 @@
   --fonte-título: Pokemon Hollow;
 }
 
+@font-face {
+  font-family: 'Pokemon Hollow';
+  src: url('Pokemon Hollow.ttf') format('truetype');
+}
+
+
+#fecharModal {
+  background-color: var(--color-transparentice);
+  border: none;
+  padding: 0px;
+  margin: 0px 0px 0px auto
+}
+
+#fecharModal h2 {
+  padding: 0px;
+  margin: 0;
+}
+
+#fecharModal h2:hover {
+  padding: 0px;
+  margin: 0;
+  color: var(--color-lightgreen);
+}
+
 dialog::backdrop {
   background-color: var(--color-transparentice);
 }
@@ -19,6 +43,11 @@ dialog {
   box-shadow: 5px 5px 10px var(--color-black);
   max-width: 450px;
   background-color: var(--color-ice);
+}
+
+#modal-container {
+  border: none;
+  max-width: 450px;
   display: flex;
   justify-content: center;
   align-items: center;
