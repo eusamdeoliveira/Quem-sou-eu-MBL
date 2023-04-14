@@ -1,5 +1,5 @@
 // A cada 1000 unidades, dividir por 1000 e adicionar uma letra.
-const maxTentativas = 3
+const maxTentativas = 4
 let tentativas = 0
 
 const unitMapper = {
