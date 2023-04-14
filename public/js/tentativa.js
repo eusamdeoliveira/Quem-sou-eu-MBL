@@ -62,15 +62,17 @@ function acerto(chute, imagem) {
     document.querySelector("#acerto").innerHTML = "<p>Parabéns, você acertou! 🎉</p>"
     document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
     searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   } else if (tentativas >= maxTentativas ) {
-    webLink = `http://127.0.0.1:3000/opcao-correta?id=${theChosenOne}&tco=${theChosenOne}`;
+    webLink = `/opcao-correta?id=${theChosenOne}&tco=${theChosenOne}`;
     fazerRequisicao(webLink, "GET")
       .then((resposta) => {
         document.querySelector("#acerto").innerHTML = `<div><p>${resposta.personalidade.nome}</p><p>FIM DE JOGO</p></div>`
         document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${resposta.personalidade.imagem} alt="chute"></img>`
 
         searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
-        })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      })
       .catch((err)=>{console.log(err)})
   }
 }
@@ -104,5 +106,6 @@ function buildTentativa(resposta) {
       certo: !resposta.comparacao ? true : resposta.comparacao.idade == '=' ? true : resposta.comparacao.idade,
     },
     resposta.personalidade.imagem
-  );    
+  );
+  if(resposta.personalidade.id !== theChosenOne) window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 } 

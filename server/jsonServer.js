@@ -1,16 +1,22 @@
-const jsonServer = require('json-server')
-const server = jsonServer.create()
-const middlewares = jsonServer.defaults()
+// const jsonServer = require('json-server')
+// const server = jsonServer.create()
+// const middlewares = jsonServer.defaults()
+const express = require('express')
+const app = express()
+const cors = require('cors')
 const db = require('./db')
 
-server.use(middlewares)
+app.use(express.json())
+app.use(cors())
 
-server.get('/sortear-personalidade', (req, res) => { //Sortear personalidade
+app.use(express.static('public'))
+
+app.get('/sortear-personalidade', (req, res) => { //Sortear personalidade
   const theChosenOne = Math.ceil(Math.random() * db.length)
   res.send({theChosenOne})
 })
 
-server.get('/personalidades-opcoes', (req, res) => { //Autocomplete
+app.get('/personalidades-opcoes', (req, res) => { //Autocomplete
   const string = req.query.string ?? ""
   res.json(
     db
@@ -19,7 +25,7 @@ server.get('/personalidades-opcoes', (req, res) => { //Autocomplete
   )
 })
 
-server.get('/opcao-correta', (req, res) => {
+app.get('/opcao-correta', (req, res) => {
   const id = Number(req.query.id)
   const tco = Number(req.query.tco)
   if(!id) return res.status(404).send('ID inválido')
@@ -44,6 +50,6 @@ server.get('/opcao-correta', (req, res) => {
   }
 })
 
-server.listen(3000, () => {
-  console.log('JSON Server is running')
+app.listen(3000, () => {
+  console.log('Server is running')
 })

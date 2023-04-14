@@ -38,7 +38,7 @@ const inputBoxOnkeyup = (e) => {
   debounce(() => {
     let userData = e.target.value;
     if(userData) {
-      fazerRequisicao("http://127.0.0.1:3000/personalidades-opcoes?string=" + userData, "GET")
+      fazerRequisicao("/personalidades-opcoes?string=" + userData, "GET")
         .then((dados) => {
           showSuggestions(dados.map((data) => `<li id=${data.id}>${data.nome}</li>`));
           if(dados.length === 0) return
@@ -65,7 +65,7 @@ function select(element) {
   const inputBox = searchWrapper.querySelector(".search-txt");
 
   inputBox.value = "";
-  webLink = `http://127.0.0.1:3000/opcao-correta?id=${element.id}&tco=${theChosenOne}`;
+  webLink = `/opcao-correta?id=${element.id}&tco=${theChosenOne}`;
   fazerRequisicao(webLink, "GET")
     .then(buildTentativa)
     .catch((err)=>{console.log(err)})
