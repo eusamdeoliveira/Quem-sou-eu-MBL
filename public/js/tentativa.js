@@ -1,5 +1,5 @@
 // A cada 1000 unidades, dividir por 1000 e adicionar uma letra.
-const maxTentativas = 3
+const maxTentativas = 4
 let tentativas = 0
 
 const unitMapper = {
@@ -62,6 +62,7 @@ function acerto(chute, imagem) {
     document.querySelector("#acerto").innerHTML = "<p>Parabéns, você acertou! 🎉</p>"
     document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${imagem} alt="chute"></img>`
     searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   } else if (tentativas >= maxTentativas ) {
     webLink = `/opcao-correta?id=${theChosenOne}&tco=${theChosenOne}`;
     fazerRequisicao(webLink, "GET")
@@ -70,7 +71,8 @@ function acerto(chute, imagem) {
         document.querySelector(".imagem").innerHTML = `<img id="pessoa" src=${resposta.personalidade.imagem} alt="chute"></img>`
 
         searchWrapper.innerHTML = `<button title="Ctrl/Cmd + R" id="reload" onclick="newGame()">↺ NOVO JOGO</button>`
-        })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      })
       .catch((err)=>{console.log(err)})
   }
 }
@@ -104,5 +106,6 @@ function buildTentativa(resposta) {
       certo: !resposta.comparacao ? true : resposta.comparacao.idade == '=' ? true : resposta.comparacao.idade,
     },
     resposta.personalidade.imagem
-  );    
+  );
+  if(resposta.personalidade.id !== theChosenOne) window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 } 

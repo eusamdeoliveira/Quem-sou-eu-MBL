@@ -25,6 +25,19 @@ app.get('/personalidades-opcoes', (req, res) => { //Autocomplete
   )
 })
 
+const unitMapper = {
+  0: "",
+  1: "K",
+  2: "M",
+  3: "B"
+};
+
+function unitTransform(numero, unidade) {
+  return numero < 1000
+    ? numero + unitMapper[unidade]
+    : unitTransform(Math.round(numero / 1000), unidade + 1);
+}
+
 app.get('/opcao-correta', (req, res) => {
   const id = Number(req.query.id)
   const tco = Number(req.query.tco)
@@ -43,7 +56,7 @@ app.get('/opcao-correta', (req, res) => {
         casa: personalidadeSorteada.casa === personalidade.casa,
         idade: personalidadeSorteada.idade === personalidade.idade ? '=' : 
           personalidadeSorteada.idade < personalidade.idade ? '<' : '>',
-        seguidores: personalidadeSorteada.seguidores === personalidade.seguidores ? '=' : 
+        seguidores: unitTransform(personalidadeSorteada.seguidores, 0) === unitTransform(personalidade.seguidores, 0) ? '=' : 
           personalidadeSorteada.seguidores > personalidade.seguidores ? '>' : '<',
       }
     })
